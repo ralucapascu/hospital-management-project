@@ -1,0 +1,51 @@
+{%extends 'app1/homepage.html'%}
+{%block content%}
+<br>
+<div class="row">
+  <div class="col-md">
+     <div class="card card-body">
+  <h5>Detalii despre procedurile medicale efectuate de catre medicii specialisti care lucreaza in orice sectie, in afara de cea de Ambulatoriu</h5>
+  </div>
+  <div class="card card-body">
+    <table id='jointable' class="table">
+      <tr>
+        <th >Id angajat</th>
+        <th >Cod parafa</th>
+        <th >Nume</th>
+        <th >Prenume</th>
+        <th >Telefon</th>
+        <th >Email</th>
+        <th >Data angajarii</th>
+        <th >Sectie</th>
+        <th >Specializare medic</th>
+        <th >Grad profesional</th>
+        <th >Id internare</th>
+        <th >Procedura</th>
+        <th >Data inceperii procedurii</th>
+      </tr>
+
+{% for i in results %}
+<tr>
+  <td>{{i.0}}</td>
+  <td>{{i.1}}</td>
+  <td>{{i.2}}</td>
+  <td>{{i.3}}</td>
+  <td>{{i.4}}</td>
+  <td>{{i.5}}</td>
+  <td>{{i.6}}</td>
+  <td>{{i.7}}</td>
+  <td>{{i.8}}</td>
+  <td>{{i.9}}</td>
+  <td>{{i.10}}</td>
+  <td>{{i.11}}</td>
+  <td>{{i.12}}</td>
+</tr>
+{% endfor %}
+
+    </table>
+    </div>
+</div>
+</div>
+
+
+{%endblock%}

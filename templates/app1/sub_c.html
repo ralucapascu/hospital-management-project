@@ -1,0 +1,51 @@
+{%extends 'app1/homepage.html'%}
+{%block content%}
+
+<br>
+<div class="row">
+  <div class="col-md">
+     <div class="card card-body">
+  <h5>MEDICI</h5>
+  </div>
+  <div class="card card-body">
+    <table id='medic' class="table">
+        <form method="get">
+            {{filter.form}}
+            <button class="btn btn-primary" type="submit">Cauta</button>
+        </form>
+        
+      <tr>
+        <th>Id angajat</th>
+        <th>Cod parafa</th>
+        <th>Sectie</th>
+        <th>Nume</th>
+        <th >Prenume</th>
+        <th >Telefon</th>
+        <th >Email</th>
+        <th >Data angajarii</th>
+        <th >Sectie</th>
+        <th >Specializare medic</th>
+        <th >Grad profesional</th>
+      </tr>
+{% for med in medici %}
+<tr>
+  <td>{{med.id_angajat}}</td>
+  <td>{{med.cod_parafa}}</td>
+  <td>{{med.id_sectie}}</td>
+  <td>{{med.id_angajat.nume}}</td>
+  <td>{{med.id_angajat.prenume}}</td>
+  <td>{{med.id_angajat.telefon}}</td>
+  <td>{{med.id_angajat.email}}</td>
+  <td>{{med.id_angajat.data_angajarii}}</td>
+  <td>{{med.id_sectie.nume_sectie}}</td>
+  <td>{{med.specializare}}</td>
+  <td>{{med.grad_profesional}}</td>
+</tr>
+{% endfor %}
+
+    </table>
+    </div>
+</div>
+</div>
+
+{%endblock%}

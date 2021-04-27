@@ -1,0 +1,132 @@
+{%extends 'app1/homepage.html'%}
+{%block content%}
+<br>
+<div class="row">
+  <div class="col-md">
+     <div class="card card-body">
+  <h5>CABINETE</h5>
+  </div>
+  <div class="card card-body">
+    <table id='cabinet' class="table">
+      <tr>
+        <th onclick="sortStrTable(0)">Id cabinet &#9650</th>
+        <th onclick="sortStrTable(1)">Specializare cabinet &#9650</th>
+        <th onclick="sortNumTable(2)">Numar cabinet &#9650</th>
+        <th onclick="sortNumTable(3)">Etaj &#9650</th>
+        <th >Editare</th>
+        <th >Stergere</th>
+      </tr>
+
+{% for cab in cabinete %}
+<tr>
+  <td>{{cab.id_cabinet}}</td>
+  <td>{{cab.specializare_cabinet}}</td>
+  <td>{{cab.nr_cabinet}}</td>
+  <td>{{cab.etaj}}</td>
+  <td><a class="btn btn-sm btn-info" href="{% url 'update_cabinet' pk=cab.id_cabinet %}">Editare</a></td>
+  <td><a class="btn btn-sm btn-danger" href="{% url 'delete_cabinet' pk=cab.id_cabinet %}">Stergere</a></td>
+</tr>
+{% endfor %}
+    </table>
+    </div>
+</div>
+</div>
+
+<script>
+
+
+$('th').on('click', function(){
+		var column = $(this).data('column')
+		var order = $(this).data('order')
+		var text = $(this).html()
+		text = text.substring(0, text.length - 1)
+
+		if(order == 'desc'){
+			$(this).data('order', "asc")
+			text += '&#9660'
+
+		}else{
+			$(this).data('order', "desc")
+			text += '&#9650'
+
+		}
+		$(this).html(text)
+	})
+
+
+  function sortStrTable(n) {
+  var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+  table = document.getElementById("cabinet");
+  switching = true;
+  dir = "asc"; 
+  while (switching) {
+    switching = false;
+    rows = table.rows;
+    for (i = 1; i < (rows.length - 1); i++) {
+      shouldSwitch = false;
+      x = rows[i].getElementsByTagName("TD")[n];
+      y = rows[i + 1].getElementsByTagName("TD")[n];
+      if (dir == "asc") {
+        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+          shouldSwitch= true;
+          break;
+        }
+      } else if (dir == "desc") {
+        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+          shouldSwitch = true;
+          break;
+        }
+      }
+    }
+    if (shouldSwitch) {
+      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+      switching = true;
+      switchcount ++;      
+    } else {
+      if (switchcount == 0 && dir == "asc") {
+        dir = "desc";
+        switching = true;
+      }
+    }
+  }
+}
+function sortNumTable(n) {
+  var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+  table = document.getElementById("cabinet");
+  switching = true;
+  dir = "asc"; 
+  while (switching) {
+    switching = false;
+    rows = table.rows;
+    for (i = 1; i < (rows.length - 1); i++) {
+     shouldSwitch = false;
+      x = rows[i].getElementsByTagName("TD")[n];
+      y = rows[i + 1].getElementsByTagName("TD")[n];
+      if (dir == "asc") {
+        if (parseInt(x.innerHTML) > parseInt(y.innerHTML)) {
+          shouldSwitch= true;
+          break;
+        }
+      } else if (dir == "desc") {
+        if (parseInt(x.innerHTML) < parseInt(y.innerHTML)) {
+          shouldSwitch = true;
+          break;
+        }
+      }
+    }
+    if (shouldSwitch) {
+      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+      switching = true;
+      switchcount ++;      
+    } else {
+      if (switchcount == 0 && dir == "asc") {
+        dir = "desc";
+        switching = true;
+      }
+    }
+  }
+}
+</script>
+
+
+{%endblock%}

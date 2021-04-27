@@ -1,0 +1,8 @@
+<p>Sunteti sigur/a ca vreti sa stergeti "{{item}}"?</p>
+<form action="" method="POST">  
+
+    {% csrf_token %}
+    <a href="/">Cancel</a>
+
+    <input type="submit" name="Confirm">
+</form>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Spitalul General Ploiești Vest</title>
+<meta charset="UTF-8">
+  <meta name="description" content="Site-ul Spitalului General Ploiești Vest">
+  <meta name="keywords" content="spital, medic, tratament, doctor, consultatie">
+  <meta name="author" content="Raluca Pascu">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" href="favicon.ico"type="image/x-icon"/>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  
+</head>
+<body style="background-color: rgb(255, 255, 255);"> 
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">SGPV</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="{% url 'home'%}">Home</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">
+            Subpunctul a)&b)
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="{% url 'post'%}">Tabelul POST</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="{% url 'angajat'%}">Tabelul ANGAJAT</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="{% url 'cabinet'%}">Tabelul CABINET</a>
+
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="{% url 'sectie'%}">Tabelul SECTIE</a>
+
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="{% url 'medic'%}">Tabelul MEDIC</a>
+
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="{% url 'medicament'%}">Tabelul MEDICAMENT</a>
+
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="{% url 'proceduramedicala'%}">Tabelul PROCEDURA_MEDICALA</a>
+
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="{% url 'pacient'%}">Tabelul PACIENT</a>
+
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="{% url 'tratament'%}">Tabelul TRATAMENT</a>
+
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="{% url 'internare'%}">Tabelul INTERNARE</a>
+
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="{% url 'listamedicamente'%}">Tabelul LISTA_MEDICAMENTE</a>
+
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="{% url 'consultatie'%}">Tabelul CONSULTATIE</a>
+
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="{% url 'proceduriinternare'%}">Tabelul PROCEDURI_INTERNARE</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'sub_c'%}">Subpunctul c)</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'sub_d'%}">Subpunctul d)</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'sub_e'%}">Subpunctul e)</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'sub_f'%}">Subpunctul f)</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'testc'%}">Test c)</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  {%block content%}
+  
+  {%endblock%}
+ 
+</body>
+</html>

@@ -1,0 +1,71 @@
+{%extends 'app1/homepage.html'%}
+{%block content%}
+<br>
+<div class="row">
+  <div class="col-md">
+     <div class="card card-body">
+  <h5>View compus-afisarea angajatilor care lucreaza pe un post care incepe cu litera 'm'</h5>
+  </div>
+  <br>
+  <a class="btn btn-primary btn-sm btn-block" href="{% url 'createForViewCompus' %}">Inserati o inregistrare in view(se va adauga un angajat cu id=7111)</a>
+  <a class="btn btn-primary btn-sm btn-block" href="{% url 'deleteForViewCompus' %}">Stergeti inregistrarea adaugata</a>
+  <a class="btn btn-primary btn-sm btn-block" href="{% url 'updateForViewCompus' %}">Editati inregistrarea adaugata(salariul va fi setat la 2300)</a>
+  <div class="card card-body">
+    <table id='view' class="table">
+      <tr>
+        <th >Id angajat</th>
+        <th >Id post</th>
+        <th >Nume post</th>
+        <th >Nume angajat</th>
+        <th >Prenume angajat</th>
+        <th >Telefon angajat</th>
+        <th >Email angajat</th>
+        <th >Salariu angajat</th>
+        <th >Data angajarii</th>
+      </tr>
+
+{% for res in results1 %}
+<tr>
+  <td>{{res.0}}</td>
+  <td>{{res.1}}</td>
+  <td>{{res.2}}</td>
+  <td>{{res.3}}</td>
+  <td>{{res.4}}</td>
+  <td>{{res.5}}</td>
+  <td>{{res.6}}</td>
+  <td>{{res.7}}</td>
+  <td>{{res.8}}</td>
+  
+</tr>
+{% endfor %}
+    </table>
+    </div>
+</div>
+</div>
+
+<br>
+<div class="row">
+  <div class="col-md">
+     <div class="card card-body">
+  <h5>View complex-salariul maxim din cadrul fiecarui post</h5>
+  </div>
+  <div class="card card-body">
+    <table id='viewcomplex' class="table">
+      <tr>
+        <th >Id post</th>
+        <th >Salariul maxim</th>
+      </tr>
+
+{% for res in results2 %}
+<tr>
+  <td>{{res.0}}</td>
+  <td>{{res.1}}</td>]
+  
+</tr>
+{% endfor %}
+    </table>
+    </div>
+</div>
+</div>
+
+{%endblock%}

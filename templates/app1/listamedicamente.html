@@ -1,0 +1,209 @@
+{%extends 'app1/homepage.html'%}
+{%block content%}
+<br>
+<div class="row">
+  <div class="col-md">
+     <div class="card card-body">
+  <h5>LISTE MEDICAMENTE</h5>
+  </div>
+  <div class="card card-body">
+    <table id='listamedicamente' class="table">
+      <tr>
+        <th onclick="sortNumTable(0)">Id tratament &#9650</th>
+        <th onclick="sortNumTable(1)">Id medicament &#9650</th>
+        <th onclick="sortFloatTable(2)">Doza &#9650</th>
+        <th onclick="sortNumTable(3)">Luat odata la (h) &#9650</th>
+        <th onclick="sortDateTable(4)">Data incepere &#9650</th>
+        <th onclick="sortDateTable(5)">Data intrerupere &#9650</th>
+        <th >Editare</th>
+        <th >Stergere</th>
+      </tr>
+
+{% for lis in liste %}
+<tr>
+  <td>{{lis.id_tratament}}</td>
+  <td>{{lis.id_medicament}}</td>
+  <td>{{lis.doza}}</td>
+  <td>{{lis.odata_la}}</td>
+  <td>{{lis.data_incepere}}</td>
+  <td>{{lis.data_intrerupere}}</td>
+  <td><a class="btn btn-sm btn-info" href="{% url 'update_listamedicamente' pk=lis.id_lista %}">Editare</a></td>
+  <td><a class="btn btn-sm btn-danger" href="{% url 'delete_listamedicamente' pk=lis.id_lista %}">Stergere</a></td>
+</tr>
+{% endfor %}
+
+    </table>
+    </div>
+</div>
+</div>
+
+<script >
+
+$('th').on('click', function(){
+		var column = $(this).data('column')
+		var order = $(this).data('order')
+		var text = $(this).html()
+		text = text.substring(0, text.length - 1)
+
+		if(order == 'desc'){
+			$(this).data('order', "asc")
+			text += '&#9660'
+
+		}else{
+			$(this).data('order', "desc")
+			text += '&#9650'
+
+		}
+		$(this).html(text)
+	})
+
+function sortStrTable(n) {
+  var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+  table = document.getElementById("listamedicamente");
+  switching = true;
+  dir = "asc"; 
+  while (switching) {
+    switching = false;
+    rows = table.rows;
+    for (i = 1; i < (rows.length - 1); i++) {
+      shouldSwitch = false;
+      x = rows[i].getElementsByTagName("TD")[n];
+      y = rows[i + 1].getElementsByTagName("TD")[n];
+      if (dir == "asc") {
+        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+          shouldSwitch= true;
+          break;
+        }
+      } else if (dir == "desc") {
+        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+          shouldSwitch = true;
+          break;
+        }
+      }
+    }
+    if (shouldSwitch) {
+      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+      switching = true;
+      switchcount ++;      
+    } else {
+      if (switchcount == 0 && dir == "asc") {
+        dir = "desc";
+        switching = true;
+      }
+    }
+  }
+}
+
+
+function sortFloatTable(n) {
+var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+table = document.getElementById("listamedicamente");
+switching = true;
+dir = "asc"; 
+while (switching) {
+  switching = false;
+  rows = table.rows;
+  for (i = 1; i < (rows.length - 1); i++) {
+   shouldSwitch = false;
+    x = rows[i].getElementsByTagName("TD")[n];
+    y = rows[i + 1].getElementsByTagName("TD")[n];
+    if (dir == "asc") {
+      if (parseFloat(x.innerHTML) > parseFloat(y.innerHTML)) {
+        shouldSwitch= true;
+        break;
+      }
+    } else if (dir == "desc") {
+      if (parseFloat(x.innerHTML) < parseFloat(y.innerHTML)) {
+        shouldSwitch = true;
+        break;
+      }
+    }
+  }
+  if (shouldSwitch) {
+    rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+    switching = true;
+    switchcount ++;      
+  } else {
+    if (switchcount == 0 && dir == "asc") {
+      dir = "desc";
+      switching = true;
+    }
+  }
+}
+}
+function sortNumTable(n) {
+var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+table = document.getElementById("listamedicamente");
+switching = true;
+dir = "asc"; 
+while (switching) {
+  switching = false;
+  rows = table.rows;
+  for (i = 1; i < (rows.length - 1); i++) {
+   shouldSwitch = false;
+    x = rows[i].getElementsByTagName("TD")[n];
+    y = rows[i + 1].getElementsByTagName("TD")[n];
+    if (dir == "asc") {
+      if (parseInt(x.innerHTML) > parseInt(y.innerHTML)) {
+        shouldSwitch= true;
+        break;
+      }
+    } else if (dir == "desc") {
+      if (parseInt(x.innerHTML) < parseInt(y.innerHTML)) {
+        shouldSwitch = true;
+        break;
+      }
+    }
+  }
+  if (shouldSwitch) {
+    rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+    switching = true;
+    switchcount ++;      
+  } else {
+    if (switchcount == 0 && dir == "asc") {
+      dir = "desc";
+      switching = true;
+    }
+  }
+}
+}
+
+function sortDateTable(n) {
+var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+table = document.getElementById("listamedicamente");
+switching = true;
+dir = "asc"; 
+while (switching) {
+  switching = false;
+  rows = table.rows;
+  for (i = 1; i < (rows.length - 1); i++) {
+   shouldSwitch = false;
+    x = rows[i].getElementsByTagName("TD")[n];
+    y = rows[i + 1].getElementsByTagName("TD")[n]; 
+    if (dir == "asc") {
+      if (Date.parse(x.innerHTML) < Date.parse(y.innerHTML)) {
+        shouldSwitch= true;
+        break;
+      }
+    } else if (dir == "desc") {
+      if (Date.parse(x.innerHTML) > Date.parse(y.innerHTML)) {
+        shouldSwitch = true;
+        break;
+      }
+    }
+  }
+  if (shouldSwitch) {
+    rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+    switching = true;
+    switchcount ++;      
+  } else {
+    if (switchcount == 0 && dir == "asc") {
+      dir = "desc";
+      switching = true;
+    }
+  }
+}
+}
+</script>
+
+{%endblock%}
